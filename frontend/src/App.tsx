@@ -15,6 +15,7 @@ import { WriteContractPrepared } from './components/WriteContractPrepared'
 import { Box, Center, Heading } from '@chakra-ui/react'
 import CheckState from './components/CheckState'
 import BuyTokens from './components/BuyTokens'
+import PrizePool from './components/PrizePool'
 
 export function App() {
   const { isConnected } = useAccount()
@@ -29,6 +30,12 @@ export function App() {
         <CheckState />
         <Connect />
       </Box>
+      
+      <br />
+      
+      <Center>
+        <PrizePool />
+      </Center>
 
       {isConnected && (
         <>

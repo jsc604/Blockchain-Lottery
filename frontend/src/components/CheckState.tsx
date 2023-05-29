@@ -14,7 +14,6 @@ export default function CheckState() {
       .then(response => {
         setLotteryState(response.data);
         setIsLoading(false);
-        console.log('watching');
       })
       .catch(error => {
         console.error(error);

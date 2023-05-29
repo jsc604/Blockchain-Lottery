@@ -64,15 +64,8 @@ export class AppService {
     return result;
   }
 
-  async buyTokens(address: string, amount: string) {
-    const pkey = this.configService.get<string>('PRIVATE_KEY');
-    const wallet = new ethers.Wallet(pkey);
-    const signer = wallet.connect(this.provider);
-
-    const tx = await this.lotteryContract.connect(signer).purchaseTokens({
-      value: ethers.utils.parseEther(amount).div(this.TOKEN_RATIO),
-    });
-    const receipt = await tx.wait();
-    return `Bought ${amount} tokens\n(${receipt.transactionHash})`;
+  async displayPrizePool() {
+    const prizePool = await this.lotteryContract.prizePool();
+    return prizePool;
   }
 }

@@ -24,11 +24,8 @@ export class AppController {
     return this.appService.displayTokenBalance(address);
   }
 
-  @Post('buy-tokens')
-  async buyTokens(
-    @Body() data: { address: string; amount: string },
-  ): Promise<string> {
-    const { address, amount } = data;
-    return this.appService.buyTokens(address, amount);
+  @Get('prize-pool')
+  getPrizePool() {
+    return this.appService.displayPrizePool();
   }
 }
