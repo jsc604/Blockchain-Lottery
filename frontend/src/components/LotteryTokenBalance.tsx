@@ -6,7 +6,7 @@ import { ethers } from 'ethers';
 export default function LotteryTokenBalance() {
   const { address } = useAccount();
 
-  const {data, isLoading} = useContractRead({
+  const {data, isLoading, isSuccess} = useContractRead({
     address: import.meta.env.VITE_TOKEN_ADDRESS,
     abi: tokenJson.abi,
     functionName: 'balanceOf',
@@ -14,11 +14,10 @@ export default function LotteryTokenBalance() {
     watch: true,
   })
 
-  const balance = ethers.utils.formatEther(data as ethers.BigNumber);
-
   return (
     <Box>
-       {isLoading ? <Spinner /> : `LT0: ${balance}`}
+       {isLoading && <Spinner /> }
+       {isSuccess && `LT0: ${ethers.utils.formatEther(data as ethers.BigNumber)}`}
     </Box>
   );
 };
