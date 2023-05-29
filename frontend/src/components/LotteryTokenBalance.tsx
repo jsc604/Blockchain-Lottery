@@ -1,32 +1,24 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Box, Spinner } from '@chakra-ui/react';
-import { useAccount } from 'wagmi';
+import { useAccount, useContractRead } from 'wagmi';
+import * as tokenJson from '../../assets/LotteryToken.json';
+import { ethers } from 'ethers';
 
 export default function LotteryTokenBalance() {
-  const [balance, setBalance] = useState();
   const { address } = useAccount();
-  const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        const response = await axios.get(`http://localhost:3000/token-balance/${address}`);
-        setBalance(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error('Error fetching token balance:', error);
-      }
-    };
+  const {data, isLoading} = useContractRead({
+    address: import.meta.env.VITE_TOKEN_ADDRESS,
+    abi: tokenJson.abi,
+    functionName: 'balanceOf',
+    args: [address],
+    watch: true,
+  })
 
-    fetchBalance();
-  }, [address]);
-
-  { loading && <Spinner /> }
+  const balance = ethers.utils.formatEther(data as ethers.BigNumber);
 
   return (
     <Box>
-      LT0: {balance}
+       {isLoading ? <Spinner /> : `LT0: ${balance}`}
     </Box>
   );
 };
