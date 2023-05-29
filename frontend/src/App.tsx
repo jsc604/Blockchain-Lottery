@@ -40,10 +40,7 @@ export function App() {
       </Box>
       {isConnected && (
         <>
-
-
           <br />
-
           <Center>
             <PrizePool />
           </Center>
