@@ -1,58 +1,17 @@
-import { useState } from 'react';
-import { useContractWrite } from 'wagmi';
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, CloseButton, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, useDisclosure } from '@chakra-ui/react';
-import * as tokenJson from '../../assets/Lottery.json';
-import { parseEther } from 'ethers/src.ts/utils';
-import { ethers } from 'ethers';
+import { SimpleGrid } from '@chakra-ui/react'
+import { useState } from 'react'
+import CheckPrize from './CheckPrize'
+import DisplayPrize from './DisplayPrize'
+import ClaimPrize from './ClaimPrize';
 
-const PrizeWithdraw = () => {
-  const [amount, setAmount] = useState('');
-
-  const { isSuccess, write } = useContractWrite({
-    address: import.meta.env.VITE_LOTTERY_ADDRESS,
-    abi: tokenJson.abi,
-    functionName: 'prizeWithdraw',
-  });
-
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
-
+export default function PrizeWithdraw() {
+  const [prize, setPrize] = useState('');
 
   return (
-    <Box>
-      <NumberInput defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
-
-      <Button onClick={() => write({ args: [ethers.utils.parseEther(amount)]})} colorScheme='green'>Withdraw Prize</Button>
-
-      {isSuccess && isVisible &&
-        <Alert status='success'>
-          <AlertIcon />
-          <Box>
-            <AlertTitle>Success!</AlertTitle>
-            <AlertDescription>
-              {`You Bet ${amount} LT0!`}
-            </AlertDescription>
-          </Box>
-          <CloseButton
-            alignSelf='flex-start'
-            position='relative'
-            right={-1}
-            top={-1}
-            onClick={onClose}
-          />
-        </Alert>
-      }
-    </Box>
-  );
-};
-
-
-export default PrizeWithdraw;
+    <SimpleGrid columns={3} spacing={10} width={'80%'} margin={'auto'} justifyItems={'center'} textAlign={'center'} marginY={10} alignItems={'center'}>
+      <CheckPrize setPrize={setPrize} />
+      <DisplayPrize prize={prize} />
+      <ClaimPrize prize={prize}/>
+    </SimpleGrid>
+  )
+}

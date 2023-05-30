@@ -42,7 +42,7 @@ export default function OpenBets() {
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-          <Button colorScheme="blue" onClick={handleOpenBets}>Open Bets</Button>
+          <Button colorScheme="linkedin" onClick={handleOpenBets}>Open Bets</Button>
         </Box>
         :
         null

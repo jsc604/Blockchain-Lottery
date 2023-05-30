@@ -12,7 +12,7 @@ export default function CloseBets() {
 
   return (
     <Box width={'fit-content'} textAlign={'center'}>
-      <Button colorScheme="blue" onClick={() => write()}>Close Bets</Button>
+      <Button colorScheme="linkedin" onClick={() => write()}>Close Bets</Button>
     </Box>
   )
 }
