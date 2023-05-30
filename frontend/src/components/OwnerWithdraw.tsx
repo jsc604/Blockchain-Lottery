@@ -1,69 +1,52 @@
-import { useState } from 'react';
-import { useContractWrite,useContractRead,useAccount } from 'wagmi';
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, CloseButton, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, useDisclosure } from '@chakra-ui/react';
-import * as tokenJson from '../../assets/Lottery.json';
-import { parseEther } from 'ethers/src.ts/utils';
-import { ethers } from 'ethers';
+import { useContractWrite, useContractRead, useAccount } from 'wagmi';
+import { Box, Button, Heading, Text } from '@chakra-ui/react';
+import * as lotteryJson from '../../assets/Lottery.json';
+import { formatEther } from 'ethers/src.ts/utils';
+import { BigNumber } from 'ethers';
 
 const OwnerWithdraw = () => {
-  const [amount, setAmount] = useState('');
 
-  const { isSuccess, write } = useContractWrite({
+  const { data: ownerPoolData, isSuccess: ownerPoolIsSuccess } = useContractRead({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
-    abi: tokenJson.abi,
+    abi: lotteryJson.abi,
+    functionName: 'ownerPool',
+    watch: true,
+  })
+
+  const { write } = useContractWrite({
+    address: import.meta.env.VITE_LOTTERY_ADDRESS,
+    abi: lotteryJson.abi,
     functionName: 'ownerWithdraw',
+    args: [(ownerPoolData)],
   });
 
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
+  const getOwner = () => {
+    const { address } = useAccount()
+    const { data: ownerAddress } = useContractRead({
+      address: import.meta.env.VITE_LOTTERY_ADDRESS,
+      abi: lotteryJson.abi,
+      functionName: 'owner',
+    })
+    return (ownerAddress == address) ? true : false;
+  };
 
   const isOwner = getOwner();
 
   return (
-    isOwner ? (
-    <Box>
-      <NumberInput defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)}>
-        <NumberInputField />
-        <NumberInputStepper>
-          <NumberIncrementStepper />
-          <NumberDecrementStepper />
-        </NumberInputStepper>
-      </NumberInput>
+    <Box width={'fit-content'}>
 
-      <Button onClick={() => write({ args: [ethers.utils.parseEther(amount)]})} colorScheme='green'>Withdraw From Owner Pool</Button>
-
-      {isSuccess && isVisible &&
-        <Alert status='success'>
-          <AlertIcon />
-          <Box>
-            <AlertTitle>Success!</AlertTitle>
-            <AlertDescription>
-              {`You Bet ${amount} LT0!`}
-            </AlertDescription>
-          </Box>
-          <CloseButton
-            alignSelf='flex-start'
-            position='relative'
-            right={-1}
-            top={-1}
-            onClick={onClose}
-          />
-        </Alert>
+      <Heading>Owner Pool</Heading>
+      
+      {ownerPoolIsSuccess &&
+        <Text marginY={8}>{`The owner pool has accumulated ${formatEther(ownerPoolData as BigNumber)} LT0 tokens`}</Text>
       }
+
+      {isOwner &&
+        <Button onClick={() => write()} colorScheme='green'>Withdraw From Owner Pool</Button>
+      }
+
     </Box>
-  ): <Box>"Cannot Withdraw from Owner Pool"</Box>
   );
-};
-const getOwner = () => {
-  const { address } = useAccount()
-  const { data,isSuccess } = useContractRead({
-    address: import.meta.env.VITE_LOTTERY_ADDRESS,
-    abi: tokenJson.abi,
-    functionName: 'owner',
-  })
-  return (data == address) ? true : false;
 };
 
 export default OwnerWithdraw;

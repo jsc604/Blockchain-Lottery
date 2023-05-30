@@ -37,19 +37,26 @@ export function App() {
             <PrizePool />
           </Center>
           <br />
-          <hr />
+
           <br />
+          <hr />
           <SimpleGrid columns={2} spacing={10} width={'70%'} marginX={'auto'} textAlign={'center'} justifyItems={'center'} marginBottom={10}>
             <BuyTokens />
             <Bet />
           </SimpleGrid>
           <hr />
           <br />
+
           <PrizeWithdraw />
+
           <br />
           <hr />
-          {/* <OwnerWithdraw /> */}
-          {/* <ReturnTokens /> */}
+
+          <br />
+          <SimpleGrid columns={2} spacing={10} width={'70%'} marginX={'auto'} textAlign={'center'} justifyItems={'center'} marginY={10}>
+            <OwnerWithdraw />
+            <ReturnTokens />
+          </SimpleGrid>
         </>
       )}
     </>

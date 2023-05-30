@@ -22,7 +22,7 @@ export default function DisplayPrize({ prize }: pageProps) {
           Did you win Anon?
         </AlertTitle>
         <AlertDescription maxWidth='sm'>
-          Click to check if you have won a previous lottery!
+          Click the button on the left to check if you have won a previous lottery!
         </AlertDescription>
       </Alert>
     )
