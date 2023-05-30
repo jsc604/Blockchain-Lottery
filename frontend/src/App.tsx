@@ -8,7 +8,7 @@ import LotteryStatus from './components/LotteryStatus'
 import Bet from './components/Bet'
 import PrizeWithdraw from './components/PrizeWithdraw'
 import OwnerWithdraw from './components/OwnerWithdraw'
-import ReturnTokens from './components/ReturnTokens'
+import BurnTokens from './components/BurnTokens'
 
 export function App() {
   const { isConnected } = useAccount()
@@ -55,7 +55,7 @@ export function App() {
           <br />
           <SimpleGrid columns={2} spacing={10} width={'70%'} marginX={'auto'} textAlign={'center'} justifyItems={'center'} marginY={10}>
             <OwnerWithdraw />
-            <ReturnTokens />
+            <BurnTokens />
           </SimpleGrid>
         </>
       )}

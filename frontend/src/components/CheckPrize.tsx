@@ -27,7 +27,7 @@ export default function CheckPrize({setPrize}: pageProps) {
   }
 
   return (
-    <Box width={'fit-content'}>
+    <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
       <Heading>Check Prize</Heading>
       <Text marginY={8} fontSize={'xl'}>Click to check if you won any of our past lotteries</Text>
       <Button

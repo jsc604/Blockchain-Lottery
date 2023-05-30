@@ -40,7 +40,7 @@ export default function ClaimPrize({ prize }: pageProps) {
   }
 
   return (
-    <Box width={'fit-content'}>
+    <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
       <Heading>Claim Prize</Heading>
       <Text marginY={8} fontSize={'xl'}>
         If you won something, Congratulations!
