@@ -12,7 +12,7 @@ import { WatchContractEvents } from './components/WatchContractEvents'
 import { WatchPendingTransactions } from './components/WatchPendingTransactions'
 import { WriteContract } from './components/WriteContract'
 import { WriteContractPrepared } from './components/WriteContractPrepared'
-import { Box, Center, Heading } from '@chakra-ui/react'
+import { Box, Center, Heading, SimpleGrid } from '@chakra-ui/react'
 import BuyTokens from './components/BuyTokens'
 import PrizePool from './components/PrizePool'
 import BetsToggle from './components/BetsToggle'
@@ -47,18 +47,20 @@ export function App() {
       {isConnected && (
         <>
           <br />
-          <Center>
+          <Center display={'flex'} flexDirection={'column'}>
             <PrizePool />
           </Center>
           <br />
           <hr />
-          <BuyTokens />
-          <Bet/>
-          <StartBets/>
-          <CloseLottery/>
-          <PrizeWithdraw/>
-          <OwnerWithdraw/>
-          <ReturnTokens/>
+          <br />
+          <SimpleGrid columns={2} spacing={10} width={'70%'} marginX={'auto'} textAlign={'center'} justifyItems={'center'}>
+            <BuyTokens />
+            <Bet />
+          </SimpleGrid>
+          <br />
+          <PrizeWithdraw />
+          <OwnerWithdraw />
+          <ReturnTokens />
           <br />
           {/* <hr />
           <h2>Read Contracts Infinite</h2>

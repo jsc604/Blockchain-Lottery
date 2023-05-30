@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useContractWrite } from 'wagmi';
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, CloseButton, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, useDisclosure } from '@chakra-ui/react';
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, CloseButton, Heading, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, useDisclosure } from '@chakra-ui/react';
 import * as tokenJson from '../../assets/Lottery.json';
 import { parseEther } from 'ethers/src.ts/utils';
 import { ethers } from 'ethers';
@@ -20,7 +20,10 @@ const BuyTokens = () => {
   } = useDisclosure({ defaultIsOpen: true })
 
   return (
-    <Box>
+    <Box width={'fit-content'}>
+
+      <Heading marginY={10}>Buy Tokens</Heading>
+
       <NumberInput defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)}>
         <NumberInputField />
         <NumberInputStepper>
@@ -29,7 +32,13 @@ const BuyTokens = () => {
         </NumberInputStepper>
       </NumberInput>
 
-      <Button onClick={() => write({ value: BigInt(ethers.BigNumber.from(parseEther(amount)).toString()) / 1000n })} colorScheme='green'>Buy Tokens</Button>
+      <Button
+        onClick={() => write({ value: BigInt(ethers.BigNumber.from(parseEther(amount)).toString()) / 1000n })}
+        colorScheme='green'
+        marginY={4}
+      >
+        Buy Tokens
+      </Button>
 
       {isSuccess && isVisible &&
         <Alert status='success'>
