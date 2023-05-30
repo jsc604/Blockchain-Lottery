@@ -17,6 +17,12 @@ import BuyTokens from './components/BuyTokens'
 import PrizePool from './components/PrizePool'
 import BetsToggle from './components/BetsToggle'
 import LotteryStatus from './components/LotteryStatus'
+import Bet from './components/Bet'
+import StartBets from './components/StartBets'
+import CloseLottery from './components/CloseLottery'
+import OwnerWithdraw from './components/OwnerWithdraw'
+import PrizeWithdraw from './components/PrizeWithdraw'
+import ReturnTokens from './components/ReturnTokens'
 
 export function App() {
   const { isConnected } = useAccount()
@@ -47,6 +53,12 @@ export function App() {
           <br />
           <hr />
           <BuyTokens />
+          <Bet/>
+          <StartBets/>
+          <CloseLottery/>
+          <PrizeWithdraw/>
+          <OwnerWithdraw/>
+          <ReturnTokens/>
           <br />
           {/* <hr />
           <h2>Read Contracts Infinite</h2>
