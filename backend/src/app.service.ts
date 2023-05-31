@@ -42,7 +42,7 @@ export class AppService {
   async checkState() {
     const state = await this.lotteryContract.betsOpen();
     console.log(state);
-    let result = `The lottery is ${state ? 'open' : 'closed'}\n`;
+    let result = `The lottery is ${state ? 'open' : 'closed'}`;
 
     if (!state) return result;
 
@@ -64,8 +64,94 @@ export class AppService {
     return result;
   }
 
+  async displayEthBalance(address: string) {
+    const balanceBN = await this.provider.getBalance(address);
+    const balance = ethers.utils.formatEther(balanceBN);
+    return `The account of address ${address} has ${balance} ETH`;
+  }
+
   async displayPrizePool() {
     const prizePool = await this.lotteryContract.prizePool();
     return prizePool;
+  }
+
+  async openBets(duration: string) {
+    const currentBlock = await this.provider.getBlock('latest');
+    const tx = await this.lotteryContract.openBets(
+      currentBlock.timestamp + Number(duration),
+    );
+    const receipt = await tx.wait();
+    return `Bets opened (${receipt.transactionHash})`;
+  }
+
+  async closeLottery() {
+    const tx = await this.lotteryContract.closeLottery();
+    const receipt = await tx.wait();
+    return `Bets closed (${receipt.transactionHash})`;
+  }
+
+  async buyTokens(address: string, amount: string) {
+    const tx = await this.lotteryContract.connect(address).purchaseTokens({
+      value: ethers.utils.parseEther(amount).div(this.TOKEN_RATIO),
+    });
+    const receipt = await tx.wait();
+    return `Tokens bought (${receipt.transactionHash})`;
+  }
+
+  async bet(address: string, amount: string) {
+    const allowTx = await this.tokenContract
+      .connect(address)
+      .approve(this.lotteryContract.address, ethers.constants.MaxUint256);
+    await allowTx.wait();
+    const tx = await this.lotteryContract.connect(address).betMany(amount);
+    const receipt = await tx.wait();
+    return `Bets placed (${receipt.transactionHash})`;
+  }
+
+  async displayPrize(address: string): Promise<string> {
+    const prizeBN = await this.lotteryContract.prize(address);
+    const prize = ethers.utils.formatEther(prizeBN);
+    console.log(
+      `The account of address ${address} has earned a prize of ${prize} Tokens`,
+    );
+    return prize;
+  }
+
+  async claimPrize(address: string, amount: string) {
+    const tx = await this.lotteryContract
+      .connect(address)
+      .prizeWithdraw(ethers.utils.parseEther(amount));
+    const receipt = await tx.wait();
+    return `Prize claimed (${receipt.transactionHash})`;
+  }
+
+  async displayOwnerPool() {
+    const balanceBN = await this.lotteryContract.ownerPool();
+    const balance = ethers.utils.formatEther(balanceBN);
+    console.log(`The owner pool has (${balance}) Tokens \n`);
+    return balance;
+  }
+
+  async withdrawTokens(amount: string) {
+    const tx = await this.lotteryContract.ownerWithdraw(
+      ethers.utils.parseEther(amount),
+    );
+    const receipt = await tx.wait();
+    return `Withdraw confirmed (${receipt.transactionHash})`;
+  }
+
+  async burnTokens(address: string, amount: string) {
+    const allowTx = await this.tokenContract
+      .connect(address)
+      .approve(this.lotteryContract.address, ethers.constants.MaxUint256);
+    const receiptAllow = await allowTx.wait();
+    const tx = await this.lotteryContract
+      .connect(address)
+      .returnTokens(ethers.utils.parseEther(amount));
+    const receipt = await tx.wait();
+    return {
+      allowance: receiptAllow.transactionHash,
+      burn: receipt.transactionHash,
+    };
   }
 }
