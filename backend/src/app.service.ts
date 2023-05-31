@@ -72,7 +72,7 @@ export class AppService {
 
   async displayPrizePool() {
     const prizePool = await this.lotteryContract.prizePool();
-    return prizePool;
+    return ethers.utils.formatEther(prizePool);
   }
 
   async openBets(duration: string) {
