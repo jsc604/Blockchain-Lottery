@@ -7,6 +7,7 @@ import { ethers } from 'ethers';
 
 const BuyTokens = () => {
   const [amount, setAmount] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const { write, data } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
@@ -14,14 +15,12 @@ const BuyTokens = () => {
     functionName: 'purchaseTokens',
   });
 
-  const { isLoading, isSuccess } = useWaitForTransaction({
-    hash: data?.hash
+  const { isLoading } = useWaitForTransaction({
+    hash: data?.hash,
+    onSuccess() {
+      setSuccessMessage(true);
+    }
   })
-
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -30,13 +29,13 @@ const BuyTokens = () => {
 
       <Text marginBottom={4} fontSize={'xl'}>Enter the amount of tokens you wish to buy</Text>
       
-      {isSuccess && isVisible &&
+      {successMessage &&
         <Alert status='success'>
           <AlertIcon />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
-              {`You purchased ${amount} LT0!`}
+              You purchased {amount} LT0!
             </AlertDescription>
           </Box>
           <CloseButton
@@ -44,7 +43,7 @@ const BuyTokens = () => {
             position='relative'
             right={-1}
             top={-1}
-            onClick={onClose}
+            onClick={() => setSuccessMessage(false)}
           />
         </Alert>
       }

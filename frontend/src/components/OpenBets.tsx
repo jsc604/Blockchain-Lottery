@@ -1,4 +1,4 @@
-import { useAccount, useContractRead, useContractWrite } from "wagmi"
+import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi"
 import * as lotteryJson from '../../assets/Lottery.json';
 import { Box, Button, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Text } from "@chakra-ui/react";
 import { useState } from "react";
@@ -7,11 +7,15 @@ import { ethers } from "ethers";
 export default function OpenBets() {
   const [duration, setDuration] = useState<string>();
 
-  const { write } = useContractWrite({
+  const { write, data } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'openBets',
-  });
+  })
+
+  const { isLoading } = useWaitForTransaction({
+    hash: data?.hash,
+  })
 
   const handleOpenBets = async () => {
     const provider = new ethers.providers.JsonRpcProvider(import.meta.env.VITE_GOERLI_URL);
@@ -42,7 +46,14 @@ export default function OpenBets() {
               <NumberDecrementStepper />
             </NumberInputStepper>
           </NumberInput>
-          <Button colorScheme="linkedin" onClick={handleOpenBets}>Open Bets</Button>
+          <Button
+            colorScheme="linkedin"
+            onClick={handleOpenBets}
+            isLoading={isLoading}
+            loadingText='Opening Bets...'
+          >
+            Open Bets
+          </Button>
         </Box>
         :
         null

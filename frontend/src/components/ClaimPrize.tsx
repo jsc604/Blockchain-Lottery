@@ -3,6 +3,7 @@ import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } 
 import * as lotteryJson from '../../assets/Lottery.json';
 import { formatEther, parseEther } from "ethers/src.ts/utils";
 import { BigNumber } from "ethers";
+import { useState } from "react";
 
 interface pageProps {
   prize?: string;
@@ -10,6 +11,7 @@ interface pageProps {
 
 export default function ClaimPrize({ prize }: pageProps) {
   const { address } = useAccount();
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const { data: prizeAmount } = useContractRead({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
@@ -26,7 +28,10 @@ export default function ClaimPrize({ prize }: pageProps) {
   });
 
   const { isLoading } = useWaitForTransaction({
-    hash: withdrawData?.hash
+    hash: withdrawData?.hash,
+    onSuccess() {
+      setSuccessMessage(true);
+    }
   })
 
   const claimButton = () => {
@@ -44,11 +49,6 @@ export default function ClaimPrize({ prize }: pageProps) {
     }
   }
 
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
-
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
       <Heading>Claim Prize</Heading>
@@ -57,7 +57,7 @@ export default function ClaimPrize({ prize }: pageProps) {
         <br />
         If not, theres always next time!
       </Text>
-      {isSuccess && isVisible &&
+      {successMessage &&
         <Alert status='success'>
           <AlertIcon />
           <Box margin={'auto'} fontSize={'xl'}>
@@ -71,11 +71,21 @@ export default function ClaimPrize({ prize }: pageProps) {
             position='relative'
             right={-1}
             top={-1}
-            onClick={onClose}
+            onClick={() => setSuccessMessage(false)}
           />
         </Alert>
       }
       {!isSuccess && claimButton()}
+      {isLoading &&
+        <Button
+          colorScheme='linkedin'
+          onClick={() => write()}
+          isLoading={isLoading}
+          loadingText='Claiming ...'
+        >
+          Claim
+        </Button>
+      }
     </Box>
   )
 }

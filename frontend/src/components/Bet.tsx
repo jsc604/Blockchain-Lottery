@@ -7,6 +7,8 @@ import { ethers } from 'ethers';
 
 const Bet = () => {
   const [amount, setAmount] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(false);
 
   const { write: writeApprove, data: approveData } = useContractWrite({
     address: import.meta.env.VITE_TOKEN_ADDRESS,
@@ -15,10 +17,13 @@ const Bet = () => {
     args: [import.meta.env.VITE_LOTTERY_ADDRESS, ethers.constants.MaxUint256],
   })
 
-  const { write: writeBet, data: betData, isLoading: betIsLoading, isError } = useContractWrite({
+  const { write: writeBet, data: betData, isLoading: betIsLoading } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'betMany',
+    onError() {
+      setErrorMessage(true);
+    },
   });
 
   const { isLoading: approveIsLoading } = useWaitForTransaction({
@@ -28,15 +33,12 @@ const Bet = () => {
     }
   })
 
-  const { isSuccess, isLoading: betIsConfirming } = useWaitForTransaction({
+  const { isLoading: betIsConfirming } = useWaitForTransaction({
     hash: betData?.hash,
+    onSuccess() {
+      setSuccessMessage(true);
+    },
   })
-
-  console.log('data: ', isError);
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -45,7 +47,7 @@ const Bet = () => {
 
       <Text marginBottom={4} fontSize={'xl'}>Enter the amount of tokens you wish to bet</Text>
 
-      {isSuccess && isVisible &&
+      {successMessage &&
         <Alert status='success'>
           <AlertIcon />
           <Box margin={'auto'} fontSize={'xl'}>
@@ -59,11 +61,11 @@ const Bet = () => {
             position='relative'
             right={-1}
             top={-1}
-            onClick={onClose}
+            onClick={() => setSuccessMessage(false)}
           />
         </Alert>
       }
-      {isError && isVisible &&
+      {errorMessage &&
         <Alert status='error'>
           <AlertIcon />
           <Box margin={'auto'} fontSize={'xl'}>
@@ -77,7 +79,7 @@ const Bet = () => {
             position='relative'
             right={-1}
             top={-1}
-            onClick={onClose}
+            onClick={() => setErrorMessage(false)}
           />
         </Alert>
       }

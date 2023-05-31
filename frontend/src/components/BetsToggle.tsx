@@ -5,16 +5,16 @@ import CloseBets from './CloseBets';
 import OpenBets from './OpenBets';
 
 export default function BetsToggle() {
-  const { data, isFetching } = useContractRead({
+  const { data } = useContractRead({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'betsOpen',
-    watch: true,
+    // watch: true,
   });
 
   return (
     <Box>
-      {isFetching ? <Spinner /> : (data ? <CloseBets /> : <OpenBets />)}
+      {data ? <CloseBets /> : <OpenBets />}
     </Box>
   )
 }

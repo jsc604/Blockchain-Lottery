@@ -1,10 +1,10 @@
 import { useContractRead } from "wagmi"
 import * as lotteryJson from '../../assets/Lottery.json';
-import { Spinner, Text } from "@chakra-ui/react";
+import { Text } from "@chakra-ui/react";
 
 export default function BetsClosingTime() {
 
-  const { data, isLoading } = useContractRead({
+  const { data } = useContractRead({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'betsClosingTime',
@@ -15,7 +15,6 @@ export default function BetsClosingTime() {
 
   return (
     <>
-      {isLoading && <Spinner />}
       {data && <Text fontSize={'2xl'}>{`Bets will close at ${closingTimeDate.toLocaleDateString()} : ${closingTimeDate.toLocaleTimeString()}\n`}</Text>}
     </>
   )

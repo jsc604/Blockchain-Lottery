@@ -9,6 +9,7 @@ import LotteryTokenBalance from './LotteryTokenBalance';
 
 const BurnTokens = () => {
   const [amount, setAmount] = useState('');
+  const [successMessage, setSuccessMessage] = useState(false);
 
   const { write: writeApprove, data: approveData } = useContractWrite({
     address: import.meta.env.VITE_TOKEN_ADDRESS,
@@ -30,14 +31,12 @@ const BurnTokens = () => {
     }
   })
 
-  const { isSuccess, isLoading: burnIsConfirming } = useWaitForTransaction({
+  const { isLoading: burnIsConfirming } = useWaitForTransaction({
     hash: burnData?.hash,
+    onSuccess() {
+      setSuccessMessage(true);
+    }
   })
-
-  const {
-    isOpen: isVisible,
-    onClose,
-  } = useDisclosure({ defaultIsOpen: true })
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -50,7 +49,7 @@ const BurnTokens = () => {
 
       <Text fontSize={'xl'}>Enter the amount you wish to burn</Text>
 
-      {isSuccess && isVisible &&
+      {successMessage &&
         <Alert status='success'>
           <AlertIcon />
           <Box margin={'auto'} fontSize={'xl'}>
@@ -64,7 +63,7 @@ const BurnTokens = () => {
             position='relative'
             right={-1}
             top={-1}
-            onClick={onClose}
+            onClick={() => setSuccessMessage(false)}
           />
         </Alert>
       }
