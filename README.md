@@ -4,8 +4,8 @@ This is a decentralized application (DApp) for a blockchain lottery built on the
 
 ## Screenshots
 
-![Screenshot 1](./media/Screenshot 2023-05-30 at 11.43.10 PM.png)
-![Screenshot 2](./media/Screenshot 2023-05-30 at 11.21.25 PM.png)
+![Screenshot 1](media/Screenshot 2023-05-30 at 11.21.25 PM.png)
+![Screenshot 2](media/Screenshot 2023-05-30 at 11.21.25 PM.png)
 <!-- 
 ## Demo
 
