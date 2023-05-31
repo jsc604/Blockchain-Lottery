@@ -4,8 +4,8 @@ This is a decentralized application (DApp) for a blockchain lottery built on the
 
 ## Screenshots
 
-![Screenshot 1](media/Screenshot 2023-05-30 at 11.21.25 PM.png)
-![Screenshot 2](media/Screenshot 2023-05-30 at 11.21.25 PM.png)
+!["Screenshot 1"](media/Screenshot 2023-05-30 at 11.21.25 PM.png)
+!["Screenshot 2"](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Screenshot%202023-05-30%20at%2011.21.25%20PM.png?raw=true)
 <!-- 
 ## Demo
 
@@ -26,14 +26,6 @@ This is a decentralized application (DApp) for a blockchain lottery built on the
 - NestJS: A backend framework for building scalable and modular applications
 - Alchemy: An infrastructure provider for Ethereum that offers APIs for accessing blockchain data
 - Chakra UI: A simple and modular UI component library for React applications
-
-- ![Vite-React](https://fontawesome.com/icons?icon=react)
-- ![Ethereum](https://fontawesome.com/icons?icon=ethereum)
-- ![Hardhat](https://fontawesome.com/icons?icon=code)
-- ![Wagmi Hooks](https://fontawesome.com/icons?icon=react)
-- ![NestJS](https://fontawesome.com/icons?icon=node-js)
-- ![Alchemy](https://fontawesome.com/icons?icon=database)
-- ![Chakra UI](https://fontawesome.com/icons?icon=palette)
 
 ## Getting Started
 
