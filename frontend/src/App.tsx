@@ -16,7 +16,7 @@ export function App() {
   return (
     <>
       <Center>
-        <Heading marginY={4} size={'2xl'}>Lottery dApp</Heading>
+        <Heading marginY={4} size={'2xl'}>Lottery DApp</Heading>
       </Center>
       <br />
       <Box display={'flex'} justifyContent={'space-between'} width={'80%'} marginX={'auto'} alignItems={'center'}>
