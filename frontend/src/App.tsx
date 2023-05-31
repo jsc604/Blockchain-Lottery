@@ -57,6 +57,7 @@ export function App() {
             <OwnerWithdraw />
             <BurnTokens />
           </SimpleGrid>
+          <br />
         </>
       )}
     </>

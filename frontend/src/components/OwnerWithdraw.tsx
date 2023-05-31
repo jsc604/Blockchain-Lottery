@@ -1,4 +1,4 @@
-import { useContractWrite, useContractRead, useAccount } from 'wagmi';
+import { useContractWrite, useContractRead, useAccount, useWaitForTransaction } from 'wagmi';
 import { Box, Button, Heading, Text, Tooltip } from '@chakra-ui/react';
 import * as lotteryJson from '../../assets/Lottery.json';
 import { formatEther } from 'ethers/src.ts/utils';
@@ -13,12 +13,16 @@ const OwnerWithdraw = () => {
     watch: true,
   })
 
-  const { write } = useContractWrite({
+  const { write, data } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'ownerWithdraw',
     args: [(ownerPoolData)],
   });
+
+  const { isLoading } = useWaitForTransaction({
+    hash: data?.hash,
+  })
 
   const getOwner = () => {
     const { address } = useAccount()
@@ -42,7 +46,14 @@ const OwnerWithdraw = () => {
       }
 
       {isOwner ?
-        <Button onClick={() => write()} colorScheme='green'>Owner Withdraw</Button>
+        <Button
+          onClick={() => write()}
+          colorScheme='green'
+          isLoading={isLoading}
+          loadingText='Withdrawing...'
+        >
+          Owner Withdraw
+        </Button>
         :
         <Tooltip label='You are not the owner of this contract' hasArrow bg={'orange.500'}>
           <Button colorScheme='green' isDisabled>Owner Withdraw</Button>

@@ -17,7 +17,7 @@ const BurnTokens = () => {
     args: [import.meta.env.VITE_LOTTERY_ADDRESS, ethers.constants.MaxUint256],
   });
 
-  const { write: writeBurn, data: burnData, isLoading: burning } = useContractWrite({
+  const { write: writeBurn, data: burnData, isLoading: burnIsLoading } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'returnTokens',
@@ -30,7 +30,7 @@ const BurnTokens = () => {
     }
   })
 
-  const { isSuccess: burnIsSuccess, isLoading: burnIsLoading } = useWaitForTransaction({
+  const { isSuccess, isLoading: burnIsConfirming } = useWaitForTransaction({
     hash: burnData?.hash,
   })
 
@@ -50,10 +50,10 @@ const BurnTokens = () => {
 
       <Text fontSize={'xl'}>Enter the amount you wish to burn</Text>
 
-      {burnIsSuccess && isVisible &&
+      {isSuccess && isVisible &&
         <Alert status='success'>
           <AlertIcon />
-          <Box>
+          <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
               {`You burned ${amount} LT0!`}
@@ -80,8 +80,8 @@ const BurnTokens = () => {
       <Button
         onClick={() => writeApprove()}
         colorScheme='orange'
-        isLoading={approveIsLoading || burnIsLoading || burning}
-        loadingText={approveIsLoading || burning ? 'Approving Tokens' : 'Burning Tokens'}
+        isLoading={approveIsLoading || burnIsLoading || burnIsConfirming}
+        loadingText={(approveIsLoading && 'Approving Tokens...') || (burnIsLoading && 'Approved... Confirm To Burn') || (burnIsConfirming && 'Burning Tokens...')}
       >
         Burn Tokens
       </Button>
