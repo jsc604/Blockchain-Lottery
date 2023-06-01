@@ -15,7 +15,7 @@ export default function CloseBets() {
   })
 
   return (
-    <Box width={'fit-content'} textAlign={'center'}>
+    <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'}>
       <Button
         colorScheme="linkedin"
         onClick={() => write()}
