@@ -10,8 +10,9 @@ This is a decentralized application (DApp) for a blockchain lottery built on the
 
 ## Demo
 
-![GIF demo]()
+*This demo is sped up*
 
+![GIF demo](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/demo.gif?raw=true)
 
 ## Dependencies
 
