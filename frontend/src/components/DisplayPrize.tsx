@@ -10,6 +10,8 @@ export default function DisplayPrize({ prize }: pageProps) {
     return (
       <Alert
         status='info'
+        backgroundColor={'whiteAlpha.400'}
+        borderRadius={8}
         variant='subtle'
         flexDirection='column'
         alignItems='center'
@@ -30,6 +32,8 @@ export default function DisplayPrize({ prize }: pageProps) {
     return (
       <Alert
         status='success'
+        backgroundColor={'green.400'}
+        borderRadius={8}
         variant='subtle'
         flexDirection='column'
         alignItems='center'
@@ -37,7 +41,7 @@ export default function DisplayPrize({ prize }: pageProps) {
         textAlign='center'
         height='200px'
       >
-        <AlertIcon boxSize='40px' mr={0} />
+        <AlertIcon boxSize='40px' mr={0} color={'green.600'}/>
         <AlertTitle mt={4} mb={1} fontSize='xl'>
           Congratulations Anon!
         </AlertTitle>
@@ -52,6 +56,8 @@ export default function DisplayPrize({ prize }: pageProps) {
     return (
       <Alert
         status='error'
+        backgroundColor={'red.400'}
+        borderRadius={8}
         variant='subtle'
         flexDirection='column'
         alignItems='center'
@@ -59,7 +65,7 @@ export default function DisplayPrize({ prize }: pageProps) {
         textAlign='center'
         height='200px'
       >
-        <AlertIcon boxSize='40px' mr={0} />
+        <AlertIcon boxSize='40px' mr={0} color={'red.600'}/>
         <AlertTitle mt={4} mb={1} fontSize='xl'>
           Sorry Anon!
         </AlertTitle>

@@ -15,7 +15,7 @@ export function Connect() {
     <Box display={'flex'} flexDirection={'column'} alignItems={'center'}>
       <Box>
         {isConnected && (
-          <Button onClick={() => disconnect()} colorScheme='green'>
+          <Button onClick={() => disconnect()} colorScheme='green' backgroundColor={'#85be00'}>
             Disconnect from {connector?.name}
           </Button>
         )}
@@ -27,6 +27,7 @@ export function Connect() {
               key={x.id}
               onClick={() => connect({ connector: x })}
               colorScheme='green'
+              backgroundColor={'#85be00'}
               isLoading={isLoading && x.id === pendingConnector?.id}
               loadingText='connecting'
             >

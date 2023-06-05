@@ -31,12 +31,13 @@ export default function CheckPrize({setPrize}: pageProps) {
       <Heading>Check Prize</Heading>
       <Text marginY={8} fontSize={'xl'}>Click to check if you won any of our past lotteries</Text>
       <Button
-        colorScheme='linkedin'
+        colorScheme='green'
+        backgroundColor={'#85be00'}
         onClick={handlefetchPrize}
         isLoading={isFetching}
         loadingText='Checking...'
       >
-        Check
+        Check Prize
       </Button>
     </Box>
   )

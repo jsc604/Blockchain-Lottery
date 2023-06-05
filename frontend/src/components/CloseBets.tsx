@@ -17,7 +17,8 @@ export default function CloseBets() {
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'}>
       <Button
-        colorScheme="linkedin"
+        colorScheme="green"
+        backgroundColor={'#85be00'}
         onClick={() => write()}
         isLoading={isLoading}
         loadingText='Closing Bets...'

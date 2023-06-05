@@ -49,6 +49,7 @@ const OwnerWithdraw = () => {
         <Button
           onClick={() => write()}
           colorScheme='green'
+          backgroundColor={'#85be00'}
           isLoading={isLoading}
           loadingText='Withdrawing...'
         >
