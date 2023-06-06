@@ -56,7 +56,7 @@ const BuyTokens = () => {
       </NumberInput>
 
       <Button
-        onClick={() => write({ value: BigInt(ethers.BigNumber.from(ethers.utils.parseEther(amount)).toString()) / 1000n })}
+        onClick={() => amount && write({ value: BigInt(ethers.BigNumber.from(ethers.utils.parseEther(amount)).toString()) / 1000n })}
         colorScheme='green'
         backgroundColor={'#85be00'}
         isLoading={isLoading}

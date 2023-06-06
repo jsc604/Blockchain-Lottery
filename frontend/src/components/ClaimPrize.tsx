@@ -39,7 +39,7 @@ export default function ClaimPrize({ prize }: pageProps) {
         <Button
           colorScheme='green'
           backgroundColor={'#85be00'}
-          onClick={() => write()}
+          onClick={() => prizeAmount && write()}
           isLoading={isLoading}
           loadingText='Claiming ...'
         >

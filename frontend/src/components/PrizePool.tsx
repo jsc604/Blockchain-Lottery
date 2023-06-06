@@ -13,7 +13,7 @@ export default function PrizePool() {
 
   return (
     <Heading>
-      {isLoading ? <Spinner /> : `Prize pool: ${ethers.utils.formatEther(data as ethers.BigNumber)} LT0`}
+      {data ? <Spinner /> : `Prize pool: ${ethers.utils.formatEther(data as ethers.BigNumber)} LT0`}
     </Heading>
   );
 };

@@ -46,7 +46,7 @@ const OwnerWithdraw = () => {
 
       {isOwner ?
         <Button
-          onClick={() => write()}
+          onClick={() => ownerPoolData && write()}
           colorScheme='green'
           backgroundColor={'#85be00'}
           isLoading={isLoading}
