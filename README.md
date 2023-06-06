@@ -4,15 +4,17 @@ This is a decentralized application (DApp) for a blockchain lottery built on the
 
 ## Screenshots
 
-!["Screenshot 1"](https://github.com/jsc604/Blockchain-Lottery/blob/jeff/media/Screenshot%202023-05-30%20at%2011.43.10%20PM.png?raw=true)
+!["Screenshot 1"](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Screenshot%202023-06-05%20at%208.29.10%20PM.png?raw=true)
 
-!["Screenshot 2"](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Screenshot%202023-05-30%20at%2011.21.25%20PM.png?raw=true)
+!["Screenshot 2"](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Screenshot%202023-06-05%20at%208.28.36%20PM.png?raw=true)
+
+!["Screenshot 3"](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Screenshot%202023-06-05%20at%208.28.53%20PM.png?raw=true)
 
 ## Demo
 
 *This demo is sped up*
 
-![GIF demo](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/demo.gif?raw=true)
+![GIF demo](https://github.com/jsc604/Blockchain-Lottery/blob/main/media/Untitled.gif?raw=true)
 
 ## Dependencies
 
