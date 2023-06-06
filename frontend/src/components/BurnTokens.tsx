@@ -3,7 +3,6 @@ import { useContractWrite, useWaitForTransaction } from 'wagmi';
 import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, CloseButton, Heading, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Text, useDisclosure } from '@chakra-ui/react';
 import * as lotteryJson from '../../assets/Lottery.json';
 import * as tokenJson from '../../assets/LotteryToken.json';
-import { parseEther } from 'ethers/src.ts/utils';
 import { ethers } from 'ethers';
 import LotteryTokenBalance from './LotteryTokenBalance';
 
@@ -27,7 +26,7 @@ const BurnTokens = () => {
   const { isLoading: approveIsLoading } = useWaitForTransaction({
     hash: approveData?.hash,
     onSuccess() {
-      writeBurn({ args: [parseEther(amount)] });
+      writeBurn({ args: [ethers.utils.parseEther(amount)] });
     }
   })
 

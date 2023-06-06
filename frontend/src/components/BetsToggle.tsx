@@ -1,6 +1,6 @@
 import { useContractRead } from 'wagmi';
 import * as lotteryJson from '../../assets/Lottery.json';
-import { Box, Spinner } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import CloseBets from './CloseBets';
 import OpenBets from './OpenBets';
 

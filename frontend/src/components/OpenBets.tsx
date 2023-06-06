@@ -1,6 +1,6 @@
 import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi"
 import * as lotteryJson from '../../assets/Lottery.json';
-import { Box, Button, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper, Spinner, Text } from "@chakra-ui/react";
+import { Box, Button, NumberDecrementStepper, NumberIncrementStepper, NumberInput, NumberInputField, NumberInputStepper } from "@chakra-ui/react";
 import { useState } from "react";
 import { ethers } from "ethers";
 

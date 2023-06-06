@@ -1,8 +1,7 @@
-import { Heading, Button, Box, Text, Alert, AlertDescription, AlertIcon, AlertTitle, CloseButton, useDisclosure } from "@chakra-ui/react";
+import { Heading, Button, Box, Text, Alert, AlertDescription, AlertIcon, AlertTitle, CloseButton } from "@chakra-ui/react";
 import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
 import * as lotteryJson from '../../assets/Lottery.json';
-import { formatEther, parseEther } from "ethers/src.ts/utils";
-import { BigNumber } from "ethers";
+import { BigNumber, ethers } from "ethers";
 import { useState } from "react";
 
 interface pageProps {
@@ -24,7 +23,7 @@ export default function ClaimPrize({ prize }: pageProps) {
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'prizeWithdraw',
-    args: [parseEther(formatEther(prizeAmount as BigNumber))],
+    args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as BigNumber))],
   });
 
   const { isLoading } = useWaitForTransaction({
@@ -64,7 +63,7 @@ export default function ClaimPrize({ prize }: pageProps) {
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
-              You claimed {formatEther(prizeAmount as BigNumber)} LT0!
+              You claimed {ethers.utils.formatEther(prizeAmount as BigNumber)} LT0!
             </AlertDescription>
           </Box>
           <CloseButton
