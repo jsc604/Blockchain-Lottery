@@ -41,7 +41,7 @@ export default function DisplayPrize({ prize }: pageProps) {
         textAlign='center'
         height='200px'
       >
-        <AlertIcon boxSize='40px' mr={0} color={'green.600'}/>
+        <AlertIcon boxSize='40px' mr={0} color={'green.700'}/>
         <AlertTitle mt={4} mb={1} fontSize='xl'>
           Congratulations Anon!
         </AlertTitle>

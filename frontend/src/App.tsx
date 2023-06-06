@@ -17,9 +17,9 @@ export function App() {
   return (
     <Box bgGradient='linear(to-b, #0081bd, #00c7ea)' textColor={'white'} minHeight={'100vh'}>
       <Center>
-        <Heading marginY={4} size={'2xl'}>Blockchain Lottery</Heading>
+        <Heading marginY={4} size={'3xl'}>Blockchain Lottery</Heading>
       </Center>
-      <br />
+  
       <Box display={'flex'} justifyContent={'space-between'} width={'80%'} marginX={'auto'} alignItems={'center'}>
         <Box>
           {isConnected &&
@@ -31,7 +31,6 @@ export function App() {
         </Box>
         <Connect />
       </Box>
-      <br />
 
       {!isConnected && <Home />}
       

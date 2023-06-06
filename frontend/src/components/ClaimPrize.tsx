@@ -59,8 +59,8 @@ export default function ClaimPrize({ prize }: pageProps) {
         If not, theres always next time!
       </Text>
       {successMessage &&
-        <Alert status='success'>
-          <AlertIcon />
+        <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
+          <AlertIcon color={'green.700'}/>
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
@@ -79,7 +79,8 @@ export default function ClaimPrize({ prize }: pageProps) {
       {!isSuccess && claimButton()}
       {isLoading &&
         <Button
-          colorScheme='linkedin'
+          colorScheme='green'
+          backgroundColor={'#85be00'}
           onClick={() => write()}
           isLoading={isLoading}
           loadingText='Claiming ...'
