@@ -34,7 +34,7 @@ export default function ClaimPrize({ prize }: pageProps) {
   })
 
   const claimButton = () => {
-    if (Number(prize) > 0) {
+    // if (Number(prize) > 0) {
       return (
         <Button
           colorScheme='green'
@@ -46,7 +46,7 @@ export default function ClaimPrize({ prize }: pageProps) {
           Claim
         </Button>
       )
-    }
+    // }
   }
 
   return (
@@ -75,7 +75,7 @@ export default function ClaimPrize({ prize }: pageProps) {
           />
         </Alert>
       }
-      {!isSuccess && claimButton()}
+      {Number(prize) > 0 && claimButton()}
       {isLoading &&
         <Button
           colorScheme='green'
