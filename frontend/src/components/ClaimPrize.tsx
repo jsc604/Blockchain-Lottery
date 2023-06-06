@@ -76,7 +76,7 @@ export default function ClaimPrize({ prize }: pageProps) {
         </Alert>
       }
       {Number(prize) > 0 && claimButton()}
-      {isLoading &&
+      {/* {isLoading &&
         <Button
           colorScheme='green'
           backgroundColor={'#85be00'}
@@ -86,7 +86,7 @@ export default function ClaimPrize({ prize }: pageProps) {
         >
           Claim
         </Button>
-      }
+      } */}
     </Box>
   )
 }
