@@ -47,11 +47,11 @@ const BurnTokens = () => {
         <LotteryTokenBalance />
       </Box>
 
-      <Text fontSize={'xl'}>Enter the amount you wish to burn</Text>
+      <Text fontSize={'xl'}>Enter the amount of tokens you wish to burn</Text>
 
       {successMessage &&
-        <Alert status='success'>
-          <AlertIcon />
+        <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
+          <AlertIcon color={'green.700'}/>
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
@@ -68,7 +68,7 @@ const BurnTokens = () => {
         </Alert>
       }
 
-      <NumberInput backgroundColor={'whiteAlpha.200'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
+      <NumberInput backgroundColor={'white'} rounded={'md'} color={'black'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />

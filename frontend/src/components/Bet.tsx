@@ -48,8 +48,8 @@ const Bet = () => {
       <Text marginBottom={4} fontSize={'xl'}>Enter the amount of tokens you wish to bet</Text>
 
       {successMessage &&
-        <Alert status='success'>
-          <AlertIcon />
+        <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
+          <AlertIcon color={'green.700'} />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
@@ -66,8 +66,8 @@ const Bet = () => {
         </Alert>
       }
       {errorMessage &&
-        <Alert status='error'>
-          <AlertIcon />
+        <Alert status='error' backgroundColor={'red.400'} borderRadius={8}>
+          <AlertIcon color={'red.600'} />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Error!</AlertTitle>
             <AlertDescription>
@@ -84,7 +84,7 @@ const Bet = () => {
         </Alert>
       }
 
-      <NumberInput backgroundColor={'whiteAlpha.300'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
+      <NumberInput backgroundColor={'white'} rounded={'md'} color={'black'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
