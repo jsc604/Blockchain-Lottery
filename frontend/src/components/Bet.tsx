@@ -84,7 +84,7 @@ const Bet = () => {
         </Alert>
       }
 
-      <NumberInput defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
+      <NumberInput backgroundColor={'whiteAlpha.300'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -95,6 +95,7 @@ const Bet = () => {
       <Button
         onClick={() => writeApprove()}
         colorScheme='green'
+        backgroundColor={'#85be00'}
         isLoading={approveIsLoading || betIsLoading || betIsConfirming}
         loadingText={(approveIsLoading && 'Approving Bet...') || (betIsLoading && 'Approved... Confirm Bet') || (betIsConfirming && 'Betting Tokens...')}
       >

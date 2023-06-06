@@ -38,7 +38,8 @@ export default function ClaimPrize({ prize }: pageProps) {
     if (Number(prize) > 0) {
       return (
         <Button
-          colorScheme='linkedin'
+          colorScheme='green'
+          backgroundColor={'#85be00'}
           onClick={() => write()}
           isLoading={isLoading}
           loadingText='Claiming ...'

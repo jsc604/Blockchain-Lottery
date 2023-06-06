@@ -68,7 +68,7 @@ const BurnTokens = () => {
         </Alert>
       }
 
-      <NumberInput defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
+      <NumberInput backgroundColor={'whiteAlpha.200'} defaultValue={0} precision={0} step={1} min={0} value={amount} onChange={(value) => setAmount(value)} marginY={4}>
         <NumberInputField />
         <NumberInputStepper>
           <NumberIncrementStepper />
@@ -79,6 +79,7 @@ const BurnTokens = () => {
       <Button
         onClick={() => writeApprove()}
         colorScheme='orange'
+        backgroundColor={'#f37a19'}
         isLoading={approveIsLoading || burnIsLoading || burnIsConfirming}
         loadingText={(approveIsLoading && 'Approving Tokens...') || (burnIsLoading && 'Approved... Confirm To Burn') || (burnIsConfirming && 'Burning Tokens...')}
       >

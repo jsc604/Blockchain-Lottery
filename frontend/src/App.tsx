@@ -9,14 +9,15 @@ import Bet from './components/Bet'
 import PrizeWithdraw from './components/PrizeWithdraw'
 import OwnerWithdraw from './components/OwnerWithdraw'
 import BurnTokens from './components/BurnTokens'
+import Home from './components/Home'
 
 export function App() {
   const { isConnected } = useAccount()
 
   return (
-    <>
+    <Box bgGradient='linear(to-b, #0081bd, #00c7ea)' textColor={'white'} minHeight={'100vh'}>
       <Center>
-        <Heading marginY={4} size={'2xl'}>Lottery DApp</Heading>
+        <Heading marginY={4} size={'2xl'}>Blockchain Lottery</Heading>
       </Center>
       <br />
       <Box display={'flex'} justifyContent={'space-between'} width={'80%'} marginX={'auto'} alignItems={'center'}>
@@ -30,9 +31,12 @@ export function App() {
         </Box>
         <Connect />
       </Box>
+      <br />
+
+      {!isConnected && <Home />}
+      
       {isConnected && (
         <>
-          <br />
           <Center display={'flex'} flexDirection={'column'}>
             <PrizePool />
           </Center>
@@ -60,6 +64,6 @@ export function App() {
           <br />
         </>
       )}
-    </>
+    </Box>
   )
 }

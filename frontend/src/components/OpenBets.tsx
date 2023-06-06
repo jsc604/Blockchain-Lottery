@@ -39,7 +39,7 @@ export default function OpenBets() {
     <>
       {isOwner ?
         <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'}>
-          <NumberInput defaultValue={''} precision={0} step={1} min={0} value={duration} onChange={(value) => setDuration(value)} placeholder="Duration (seconds)">
+          <NumberInput backgroundColor={'whiteAlpha.300'} defaultValue={''} precision={0} step={1} min={0} value={duration} onChange={(value) => setDuration(value)} placeholder="Duration (seconds)">
             <NumberInputField />
             <NumberInputStepper>
               <NumberIncrementStepper />
@@ -47,11 +47,12 @@ export default function OpenBets() {
             </NumberInputStepper>
           </NumberInput>
           <Button
-            colorScheme="linkedin"
+            colorScheme="green"
             onClick={handleOpenBets}
             isLoading={isLoading}
             loadingText='Opening Bets...'
             marginY={4}
+            backgroundColor={'#85be00'}
           >
             Open Bets
           </Button>
