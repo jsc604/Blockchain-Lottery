@@ -20,7 +20,7 @@ const BuyTokens = () => {
       setSuccessMessage(true);
     }
   })
-  console.log('buy: ', amount);
+  
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 

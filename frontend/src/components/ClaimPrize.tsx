@@ -19,7 +19,7 @@ export default function ClaimPrize({ prize }: pageProps) {
     args: [address],
   })
 
-  const { write, data: withdrawData, isSuccess } = useContractWrite({
+  const { write, data: withdrawData } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'prizeWithdraw',
@@ -32,20 +32,6 @@ export default function ClaimPrize({ prize }: pageProps) {
       setSuccessMessage(true);
     }
   })
-
-  const claimButton = () => {
-    return (
-      <Button
-        colorScheme='green'
-        backgroundColor={'#85be00'}
-        onClick={() => prizeAmount && write()}
-        isLoading={isLoading}
-        loadingText='Claiming ...'
-      >
-        Claim
-      </Button>
-    )
-  }
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -73,7 +59,17 @@ export default function ClaimPrize({ prize }: pageProps) {
           />
         </Alert>
       }
-      {Number(prize) > 0 && claimButton()}
+      {Number(prize) > 0 && (
+        <Button
+          colorScheme='green'
+          backgroundColor={'#85be00'}
+          onClick={() => prizeAmount && write()}
+          isLoading={isLoading}
+          loadingText='Claiming ...'
+        >
+          Claim
+        </Button>
+      )}
     </Box>
   )
 }

@@ -10,7 +10,7 @@ export default function PrizePool() {
     functionName: 'prizePool',
     watch: true,
   })
-console.log('prizepool: ', data);
+  
   return (
     <Heading>
       {isLoading ? <Spinner /> : `Prize pool: ${ethers.utils.formatEther(data as ethers.BigNumber)} LT0`}

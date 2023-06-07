@@ -34,7 +34,7 @@ const OwnerWithdraw = () => {
   };
 
   const isOwner = getOwner();
-console.log('ownerpooldaat: ', ownerPoolData);
+  
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 
