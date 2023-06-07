@@ -5,7 +5,7 @@ import * as tokenJson from '../../assets/Lottery.json';
 import { ethers } from 'ethers';
 
 const BuyTokens = () => {
-  const [amount, setAmount] = useState('');
+  const [amount, setAmount] = useState('0');
   const [successMessage, setSuccessMessage] = useState(false);
 
   const { write, data } = useContractWrite({
@@ -20,17 +20,17 @@ const BuyTokens = () => {
       setSuccessMessage(true);
     }
   })
-
+  console.log('buy: ', amount);
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
 
       <Heading marginY={10}>Buy Tokens</Heading>
 
       <Text marginBottom={4} fontSize={'xl'}>Enter the amount of tokens you wish to buy</Text>
-      
+
       {successMessage &&
         <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
-          <AlertIcon color={'green.700'}/>
+          <AlertIcon color={'green.700'} />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
