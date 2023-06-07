@@ -11,7 +11,7 @@ export default function PrizeWithdraw() {
     <SimpleGrid columns={3} spacing={10} width={'80%'} margin={'auto'} justifyItems={'center'} textAlign={'center'} marginY={10} alignItems={'center'}>
       <CheckPrize setPrize={setPrize} />
       <DisplayPrize prize={prize} />
-      <ClaimPrize prize={prize} />
+      {/* <ClaimPrize prize={prize} /> */}
     </SimpleGrid>
   )
 }
