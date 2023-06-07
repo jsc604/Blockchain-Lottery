@@ -2,7 +2,7 @@ import { useAccount, useContractRead } from "wagmi"
 import * as lotteryJson from '../../assets/Lottery.json';
 import { Box, Button, Heading, Text } from "@chakra-ui/react";
 import { Dispatch } from "react";
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 
 interface pageProps {
   setPrize: Dispatch<React.SetStateAction<string>>
@@ -18,7 +18,7 @@ export default function CheckPrize({setPrize}: pageProps) {
     args: [address],
   })
 
-  const prizeAmount = data ? ethers.utils.formatEther(data as BigNumber) : '0';
+  const prizeAmount = data ? ethers.utils.formatEther(data as ethers.BigNumber) : '0';
 
   const handlefetchPrize = () => {
     refetch();

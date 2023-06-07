@@ -1,7 +1,7 @@
 import { Heading, Button, Box, Text, Alert, AlertDescription, AlertIcon, AlertTitle, CloseButton } from "@chakra-ui/react";
 import { useAccount, useContractRead, useContractWrite, useWaitForTransaction } from "wagmi";
 import * as lotteryJson from '../../assets/Lottery.json';
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 import { useState } from "react";
 
 interface pageProps {
@@ -23,7 +23,7 @@ export default function ClaimPrize({ prize }: pageProps) {
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'prizeWithdraw',
-    args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as BigNumber))],
+    args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))],
   });
 
   const { isLoading } = useWaitForTransaction({
@@ -34,19 +34,17 @@ export default function ClaimPrize({ prize }: pageProps) {
   })
 
   const claimButton = () => {
-    // if (Number(prize) > 0) {
-      return (
-        <Button
-          colorScheme='green'
-          backgroundColor={'#85be00'}
-          onClick={() => prizeAmount && write()}
-          isLoading={isLoading}
-          loadingText='Claiming ...'
-        >
-          Claim
-        </Button>
-      )
-    // }
+    return (
+      <Button
+        colorScheme='green'
+        backgroundColor={'#85be00'}
+        onClick={() => prizeAmount && write()}
+        isLoading={isLoading}
+        loadingText='Claiming ...'
+      >
+        Claim
+      </Button>
+    )
   }
 
   return (
@@ -59,11 +57,11 @@ export default function ClaimPrize({ prize }: pageProps) {
       </Text>
       {successMessage &&
         <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
-          <AlertIcon color={'green.700'}/>
+          <AlertIcon color={'green.700'} />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>
-              You claimed {ethers.utils.formatEther(prizeAmount as BigNumber)} LT0!
+              You claimed {ethers.utils.formatEther(prizeAmount as ethers.BigNumber)} LT0!
             </AlertDescription>
           </Box>
           <CloseButton
@@ -76,17 +74,6 @@ export default function ClaimPrize({ prize }: pageProps) {
         </Alert>
       }
       {Number(prize) > 0 && claimButton()}
-      {/* {isLoading &&
-        <Button
-          colorScheme='green'
-          backgroundColor={'#85be00'}
-          onClick={() => write()}
-          isLoading={isLoading}
-          loadingText='Claiming ...'
-        >
-          Claim
-        </Button>
-      } */}
     </Box>
   )
 }

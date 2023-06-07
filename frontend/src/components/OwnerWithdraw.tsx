@@ -1,7 +1,7 @@
 import { useContractWrite, useContractRead, useAccount, useWaitForTransaction } from 'wagmi';
 import { Box, Button, Heading, Text, Tooltip } from '@chakra-ui/react';
 import * as lotteryJson from '../../assets/Lottery.json';
-import { BigNumber, ethers } from 'ethers';
+import { ethers } from 'ethers';
 
 const OwnerWithdraw = () => {
 
@@ -41,7 +41,7 @@ const OwnerWithdraw = () => {
       <Heading>Owner Pool</Heading>
 
       {ownerPoolIsSuccess &&
-        <Text marginY={8} fontSize={'xl'}>The owner pool has accumulated {ethers.utils.formatEther(ownerPoolData as BigNumber)} LT0 tokens</Text>
+        <Text marginY={8} fontSize={'xl'}>The owner pool has accumulated {ethers.utils.formatEther(ownerPoolData as ethers.BigNumber)} LT0 tokens</Text>
       }
 
       {isOwner ?

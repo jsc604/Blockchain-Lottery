@@ -9,7 +9,6 @@ export default function BetsToggle() {
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'betsOpen',
-    // watch: true,
   });
 
   return (
