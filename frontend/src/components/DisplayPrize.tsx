@@ -41,7 +41,7 @@ export default function DisplayPrize({ prize }: pageProps) {
         textAlign='center'
         height='200px'
       >
-        <AlertIcon boxSize='40px' mr={0} color={'green.700'}/>
+        <AlertIcon boxSize='40px' mr={0} color={'green.700'} />
         <AlertTitle mt={4} mb={1} fontSize='xl'>
           Congratulations Anon!
         </AlertTitle>
@@ -65,12 +65,12 @@ export default function DisplayPrize({ prize }: pageProps) {
         textAlign='center'
         height='200px'
       >
-        <AlertIcon boxSize='40px' mr={0} color={'red.600'}/>
+        <AlertIcon boxSize='40px' mr={0} color={'red.600'} />
         <AlertTitle mt={4} mb={1} fontSize='xl'>
           Sorry Anon!
         </AlertTitle>
         <AlertDescription maxWidth='sm'>
-          You don&apos;t have any prize to claim. 
+          You don&apos;t have any prize to claim.
           <br />
           Better luck next time!
         </AlertDescription>

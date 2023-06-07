@@ -50,7 +50,7 @@ const BurnTokens = () => {
 
       {successMessage &&
         <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
-          <AlertIcon color={'green.700'}/>
+          <AlertIcon color={'green.700'} />
           <Box margin={'auto'} fontSize={'xl'}>
             <AlertTitle>Success!</AlertTitle>
             <AlertDescription>

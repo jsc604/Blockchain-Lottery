@@ -8,7 +8,7 @@ interface pageProps {
   setPrize: Dispatch<React.SetStateAction<string>>
 }
 
-export default function CheckPrize({setPrize}: pageProps) {
+export default function CheckPrize({ setPrize }: pageProps) {
   const { address } = useAccount();
 
   const { data, isFetching, refetch } = useContractRead({

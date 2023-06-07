@@ -19,7 +19,7 @@ export function App() {
       <Center>
         <Heading marginY={4} size={'3xl'}>Blockchain Lottery</Heading>
       </Center>
-  
+
       <Box display={'flex'} justifyContent={'space-between'} width={'80%'} marginX={'auto'} alignItems={'center'}>
         <Box>
           {isConnected &&
@@ -33,7 +33,7 @@ export function App() {
       </Box>
 
       {!isConnected && <Home />}
-      
+
       {isConnected && (
         <>
           <Center display={'flex'} flexDirection={'column'}>

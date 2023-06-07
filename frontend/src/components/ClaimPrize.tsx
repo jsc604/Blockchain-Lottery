@@ -19,15 +19,11 @@ export default function ClaimPrize({ prize }: PageProps) {
     args: [address],
   })
 
-  console.log("prizeAmount:", prizeAmount);
-
   const { write, data: writeData } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'prizeWithdraw',
   });
-
-  console.log("writeData:", writeData);
 
   const { isLoading } = useWaitForTransaction({
     hash: writeData?.hash,
@@ -35,8 +31,6 @@ export default function ClaimPrize({ prize }: PageProps) {
       setSuccessMessage(true);
     }
   })
-
-  console.log("isLoading:", isLoading);
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -68,7 +62,7 @@ export default function ClaimPrize({ prize }: PageProps) {
         <Button
           colorScheme='green'
           backgroundColor={'#85be00'}
-          onClick={() => prizeAmount && write({args: ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))})}
+          onClick={() => prizeAmount && write({ args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))] })}
           isLoading={isLoading}
           loadingText='Claiming ...'
         >
