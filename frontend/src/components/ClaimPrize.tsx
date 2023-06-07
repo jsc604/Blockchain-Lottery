@@ -4,11 +4,11 @@ import * as lotteryJson from '../../assets/Lottery.json';
 import { ethers } from "ethers";
 import { useState } from "react";
 
-interface pageProps {
+interface PageProps {
   prize?: string;
 }
 
-export default function ClaimPrize({ prize }: pageProps) {
+export default function ClaimPrize({ prize }: PageProps) {
   const { address } = useAccount();
   const [successMessage, setSuccessMessage] = useState(false);
 
@@ -19,19 +19,24 @@ export default function ClaimPrize({ prize }: pageProps) {
     args: [address],
   })
 
-  const { write, data: withdrawData } = useContractWrite({
+  console.log("prizeAmount:", prizeAmount);
+
+  const { write, data: writeData } = useContractWrite({
     address: import.meta.env.VITE_LOTTERY_ADDRESS,
     abi: lotteryJson.abi,
     functionName: 'prizeWithdraw',
-    args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))],
   });
 
+  console.log("writeData:", writeData);
+
   const { isLoading } = useWaitForTransaction({
-    hash: withdrawData?.hash,
+    hash: writeData?.hash,
     onSuccess() {
       setSuccessMessage(true);
     }
   })
+
+  console.log("isLoading:", isLoading);
 
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
@@ -39,7 +44,7 @@ export default function ClaimPrize({ prize }: pageProps) {
       <Text marginY={8} fontSize={'xl'}>
         If you won something, Congratulations!
         <br />
-        If not, theres always next time!
+        If not, there's always next time!
       </Text>
       {successMessage &&
         <Alert status='success' backgroundColor={'green.400'} borderRadius={8}>
@@ -63,7 +68,7 @@ export default function ClaimPrize({ prize }: pageProps) {
         <Button
           colorScheme='green'
           backgroundColor={'#85be00'}
-          onClick={() => prizeAmount && write()}
+          onClick={() => prizeAmount && write({args: ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))})}
           isLoading={isLoading}
           loadingText='Claiming ...'
         >
