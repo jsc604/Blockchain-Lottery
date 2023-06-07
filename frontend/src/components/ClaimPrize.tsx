@@ -35,7 +35,7 @@ export default function ClaimPrize({ prize }: PageProps) {
   return (
     <Box maxWidth={350} width={'80%'} display={'flex'} flexDirection={'column'} justifyContent={'space-between'}>
       <Heading>Claim Prize</Heading>
-      <Text marginY={8} fontSize={'xl'}>
+      <Text marginY={4} fontSize={'xl'}>
         If you won something, Congratulations!
         <br />
         If not, there's always next time!
@@ -62,6 +62,7 @@ export default function ClaimPrize({ prize }: PageProps) {
         <Button
           colorScheme='green'
           backgroundColor={'#85be00'}
+          marginY={4}
           onClick={() => prizeAmount && write({ args: [ethers.utils.parseEther(ethers.utils.formatEther(prizeAmount as ethers.BigNumber))] })}
           isLoading={isLoading}
           loadingText='Claiming ...'
