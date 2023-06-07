@@ -23,16 +23,20 @@ export function Connect() {
         {connectors
           .filter((x) => x.ready && x.id !== connector?.id)
           .map((x) => (
-            <Button
-              key={x.id}
-              onClick={() => connect({ connector: x })}
-              colorScheme='green'
-              backgroundColor={'#85be00'}
-              isLoading={isLoading && x.id === pendingConnector?.id}
-              loadingText='connecting'
-            >
-              Connect {x.name}
-            </Button>
+            <Box textAlign={'center'}>
+              <Box>Please connect to Goerli</Box>
+              <Box>(other chains not supported)</Box>
+              <Button
+                key={x.id}
+                onClick={() => connect({ connector: x })}
+                colorScheme='green'
+                backgroundColor={'#85be00'}
+                isLoading={isLoading && x.id === pendingConnector?.id}
+                loadingText='connecting'
+              >
+                Connect {x.name}
+              </Button>
+            </Box>
           ))}
       </Box>
       {isConnected &&

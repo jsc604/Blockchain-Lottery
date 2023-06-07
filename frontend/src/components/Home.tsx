@@ -14,7 +14,7 @@ export default function Home() {
         objectFit={'cover'}
       />
       <Heading textAlign={'center'}>Test your luck and win BIG!</Heading>
-      <Box fontSize={'xl'} color={'blue.700'} textAlign={'center'}>Connect your wallet to get started</Box>
+      <Box fontSize={'xl'} color={'blue.700'} textAlign={'center'} marginBottom={8}>Connect your wallet to get started</Box>
     </Center>
   )
 }
